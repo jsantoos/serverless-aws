@@ -1,0 +1,26 @@
+service: nodeless
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: sa-east-1
+  lambdaHashingVersion: 20201221
+  # memorySize: 256
+  # iamRoleStatements:
+  #   - Effect: Allowed
+  #     Action: 
+  #       - s3:GetObject
+  #       - s3:PutObject
+  #     Resource:
+  #     - "arn:aws:s3:::*"
+
+
+functions:
+  challange:
+    handler: challange.handle
+    events: 
+      - http:
+        path: users
+        method: get
