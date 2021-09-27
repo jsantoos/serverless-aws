@@ -106,7 +106,7 @@ async function deleteUser(userID) {
   const params = {
     TableName: dynamodbTableName,
     Key: {
-      'productId': productId
+      'userID': userID
     },
     ReturnValues: 'ALL_OLD'
   }
