@@ -1,0 +1,70 @@
+service: employee
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-east-1
+  lambdaHashingVersion: 20201221
+  environment:
+    EMPLOYEE_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+      Resource: "*"
+resources:
+  Resources:
+    EmployeesDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: "id"
+            AttributeType: "S"   
+        KeySchema:
+          -
+            AttributeName: "id"
+            KeyType: "HASH"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        StreamSpecification:
+          StreamViewType: "NEW_AND_OLD_IMAGES"
+        TableName: ${self:provider.environment.EMPLOYEE_TABLE}
+
+functions:
+  employeeSubmission:
+    handler: api/employee.submit
+    memorySize: 128
+    description: Submit employee information and starts interview process.
+    events:
+      - http: 
+          path: employees
+          method: post
+  listEmployees:
+    handler: api/employee.list
+    memorySize: 128
+    description: List all employees
+    events:
+      - http: 
+          path: employees
+          method: get  
+  employeeDetails:
+    handler: api/employee.get
+    events:
+      - http:
+          path: employees/{id}
+          method: get
+  deleteEmployee:
+    handler: api/employee.delete
+    events:
+      - http:
+          path: employees/{id}
+          method: delete
