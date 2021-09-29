@@ -17,6 +17,7 @@ provider:
         - dynamodb:Scan
         - dynamodb:GetItem
         - dynamodb:PutItem
+        - dynamodb:DeleteItem 
       Resource: "*"
 resources:
   Resources:

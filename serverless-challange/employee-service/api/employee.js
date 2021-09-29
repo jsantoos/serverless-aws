@@ -67,6 +67,7 @@ module.exports.list = (event, context, callback) => {
   dynamoDb.scan(params, onScan);
 
 };
+
 module.exports.get = (event, context, callback) => {
   const params = {
     TableName: process.env.EMPLOYEE_TABLE,
