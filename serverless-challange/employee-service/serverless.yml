@@ -51,11 +51,11 @@ functions:
   listEmployees:
     handler: api/employee.list
     memorySize: 128
-    description: List all employees
+    description: List all employee
     events:
       - http: 
-          path: employees
-          method: get  
+          path: employees 
+          method: get   
   employeeDetails:
     handler: api/employee.get
     events:

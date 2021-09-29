@@ -43,10 +43,10 @@ module.exports.submit = (event, context, callback) => {
 module.exports.list = (event, context, callback) => {
   var params = {
       TableName: process.env.EMPLOYEE_TABLE,
-      ProjectionExpression: "fullname, role, age"
+      // ProjectionExpression: "id, fullname, role, age"
   };
 
-  console.log("Scanning Employee table.");
+  console.log("Scanning Candidate table.");
   const onScan = (err, data) => {
 
       if (err) {
@@ -63,9 +63,10 @@ module.exports.list = (event, context, callback) => {
       }
 
   };
-  dynamoDb.scan(params, onScan);
-};
 
+  dynamoDb.scan(params, onScan);
+
+};
 module.exports.get = (event, context, callback) => {
   const params = {
     TableName: process.env.EMPLOYEE_TABLE,
