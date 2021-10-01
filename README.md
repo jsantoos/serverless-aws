@@ -79,7 +79,7 @@ You can create, retrieve, update, or delete Employees with the following command
 ### Insert a Employee
 
 ```bash
-curl -X POST https://XXXXXXX.execute-api.us-east-1.amazonaws.com/employees --data '{ "fullname": "João Santos", "role": "FullStack Deve", "age": 25 }'
+curl -X POST -H "Accept: application/json" https://ugvpksnz45.execute-api.us-east-1.amazonaws.com/dev/employees -d "{\"role\": \"FullStack Developer\",\"fullname\": \"João Santos\",\"age\": 25}"
 
 or 
 
@@ -162,8 +162,7 @@ Example Result:
 
 ```bash
 # Replace the <id> part with a real id from your employees table
-curl -X PUT https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/employee/<id> --data '{ "fullname": "João Souza", "role": "Machine Learning", "age": 26 }'
-
+curl -X PUT -H "Accept: application/json" https://ugvpksnz45.execute-api.us-east-1.amazonaws.com/dev/employees/<id> -d "{\"role\": \"Data Scientist\",\"fullname\": \"JP\",\"age\": 25}"
 or
 
 via RESTMAN/POSTMAN/INSOMNIA inserting an JSON method PUT
