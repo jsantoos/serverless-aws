@@ -8,6 +8,7 @@ AWS.config.setPromisesDependency(require('bluebird'));
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 module.exports.submit = (event, context, callback) => {
+
   const requestBody = JSON.parse(event.body);
   const fullname = requestBody.fullname;
   const role = requestBody.role;
@@ -65,7 +66,7 @@ module.exports.list = (event, context, callback) => {
   };
 
   dynamoDb.scan(params, onScan);
-
+  
 };
 
 module.exports.get = (event, context, callback) => {
@@ -89,6 +90,60 @@ module.exports.get = (event, context, callback) => {
       callback(new Error('Couldn\'t fetch employee.'));
       return;
     });
+};
+
+module.exports.update = (event, context, callback) => {
+
+  const timestamp = new Date().getTime();
+  const requestBody = JSON.parse(event.body);
+  const fullname = requestBody.fullname;
+  const role = requestBody.role;
+  const age = requestBody.age;
+
+  const params = {
+    TableName: process.env.EMPLOYEE_TABLE,
+    Key: {
+      id: event.pathParameters.id,
+    },
+    Key: {
+      id: event.pathParameters.id,
+    },
+    ExpressionAttributeNames: {
+      '#fullname': 'fullname',
+      '#role': 'role',
+      '#age': 'age',
+
+    },
+    ExpressionAttributeValues: {
+      ':fullname': fullname,
+      ':role': role,
+      ':age': age,
+      ':updatedAt': timestamp,
+    },
+    UpdateExpression: 'SET #fullname = :fullname, #role = :role, #age = :age, updatedAt = :updatedAt',
+    ReturnValues: 'ALL_NEW',
+  };
+
+  // update the todo in the database
+  dynamoDb.update(params, (error, result) => {
+    // handle potential errors
+    if (error) {
+      console.error(error);
+      callback(null, {
+        statusCode: error.statusCode || 501,
+        headers: { 'Content-Type': 'text/plain' },
+        body: 'Couldn\'t update employee.' + error.message,
+      });
+      return;
+    }
+
+    // create a response
+    const response = {
+      statusCode: 200,
+      body: JSON.stringify(result.Attributes),
+    };
+    callback(null, response);
+  });
 };
 
 module.exports.delete = (event, context, callback) => {

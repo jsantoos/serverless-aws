@@ -17,7 +17,8 @@ provider:
         - dynamodb:Scan
         - dynamodb:GetItem
         - dynamodb:PutItem
-        - dynamodb:DeleteItem 
+        - dynamodb:DeleteItem
+        - dynamodb:UpdateItem
       Resource: "*"
 resources:
   Resources:
@@ -63,6 +64,12 @@ functions:
       - http:
           path: employees/{id}
           method: get
+  updateEmployee:
+    handler: api/employee.update
+    events:
+      - http:
+          path: employees/{id}
+          method: put
   deleteEmployee:
     handler: api/employee.delete
     events:

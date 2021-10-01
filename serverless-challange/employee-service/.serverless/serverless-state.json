@@ -21,7 +21,8 @@
             "dynamodb:Scan",
             "dynamodb:GetItem",
             "dynamodb:PutItem",
-            "dynamodb:DeleteItem"
+            "dynamodb:DeleteItem",
+            "dynamodb:UpdateItem"
           ],
           "Resource": "*"
         }
@@ -118,6 +119,12 @@
               "LogGroupName": "/aws/lambda/employee-dev-employeeDetails"
             }
           },
+          "UpdateEmployeeLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/employee-dev-updateEmployee"
+            }
+          },
           "DeleteEmployeeLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
@@ -211,7 +218,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/employee/dev/1632922835604-2021-09-29T13:40:35.604Z/employee.zip"
+                "S3Key": "serverless/employee/dev/1633112833833-2021-10-01T18:27:13.833Z/employee.zip"
               },
               "Handler": "api/employee.submit",
               "Runtime": "nodejs12.x",
@@ -242,7 +249,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/employee/dev/1632922835604-2021-09-29T13:40:35.604Z/employee.zip"
+                "S3Key": "serverless/employee/dev/1633112833833-2021-10-01T18:27:13.833Z/employee.zip"
               },
               "Handler": "api/employee.list",
               "Runtime": "nodejs12.x",
@@ -273,7 +280,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/employee/dev/1632922835604-2021-09-29T13:40:35.604Z/employee.zip"
+                "S3Key": "serverless/employee/dev/1633112833833-2021-10-01T18:27:13.833Z/employee.zip"
               },
               "Handler": "api/employee.get",
               "Runtime": "nodejs12.x",
@@ -296,6 +303,36 @@
               "EmployeeDetailsLogGroup"
             ]
           },
+          "UpdateEmployeeLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/employee/dev/1633112833833-2021-10-01T18:27:13.833Z/employee.zip"
+              },
+              "Handler": "api/employee.update",
+              "Runtime": "nodejs12.x",
+              "FunctionName": "employee-dev-updateEmployee",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "EMPLOYEE_TABLE": "employee-dev"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "UpdateEmployeeLogGroup"
+            ]
+          },
           "DeleteEmployeeLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
@@ -303,7 +340,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/employee/dev/1632922835604-2021-09-29T13:40:35.604Z/employee.zip"
+                "S3Key": "serverless/employee/dev/1633112833833-2021-10-01T18:27:13.833Z/employee.zip"
               },
               "Handler": "api/employee.delete",
               "Runtime": "nodejs12.x",
@@ -326,46 +363,56 @@
               "DeleteEmployeeLogGroup"
             ]
           },
-          "EmployeeSubmissionLambdaVersionqP8tw14bZV09wRK2txAMJ0aULYr98Gl1jrBZtpf0s": {
+          "EmployeeSubmissionLambdaVersion3w7POX1Vu81eVQHyNcX8d14iRSNQztGBRfvBjHceEs": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "EmployeeSubmissionLambdaFunction"
               },
-              "CodeSha256": "psvexQdHY+6vycaGdMPcOHFBKR7SccIN+z+tT6ZYTGM=",
+              "CodeSha256": "Q7A5rCo8PxD9FRCwoomRu0UMrwC/LQRSBNRD9NtzA94=",
               "Description": "Submit employee information and starts interview process."
             }
           },
-          "ListEmployeesLambdaVersiongdjTT61vohxTMH83G2ugnJCoyjUuuloLf2aolJnFZkA": {
+          "ListEmployeesLambdaVersionL1YiNpFNFD69cm7mTV2J7QVv5lQDPeMUsB7uhiKKI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ListEmployeesLambdaFunction"
               },
-              "CodeSha256": "psvexQdHY+6vycaGdMPcOHFBKR7SccIN+z+tT6ZYTGM=",
+              "CodeSha256": "Q7A5rCo8PxD9FRCwoomRu0UMrwC/LQRSBNRD9NtzA94=",
               "Description": "List all employee"
             }
           },
-          "EmployeeDetailsLambdaVersionG1Dhe5c4oVBZJjPmShcnly4rkVWWk8wVp8uJkyVUnU": {
+          "EmployeeDetailsLambdaVersion6InJiBM82gNUDNGo1HDE6UreOwPEbYEJIB2IQAI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "EmployeeDetailsLambdaFunction"
               },
-              "CodeSha256": "psvexQdHY+6vycaGdMPcOHFBKR7SccIN+z+tT6ZYTGM="
+              "CodeSha256": "Q7A5rCo8PxD9FRCwoomRu0UMrwC/LQRSBNRD9NtzA94="
             }
           },
-          "DeleteEmployeeLambdaVersionI2rmLjYmXVYWXquhdF0okFQYwtfpI2duvEpvBSw7Xk": {
+          "UpdateEmployeeLambdaVersionCKWmKFIr1PAHCjPBkkCCCLmMW1JnBuMTesJoEYKbs": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "UpdateEmployeeLambdaFunction"
+              },
+              "CodeSha256": "Q7A5rCo8PxD9FRCwoomRu0UMrwC/LQRSBNRD9NtzA94="
+            }
+          },
+          "DeleteEmployeeLambdaVersion16reC9i2Uu7m8YBbd1YQaJfxohPenspuu3vp3rTPn5E": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "DeleteEmployeeLambdaFunction"
               },
-              "CodeSha256": "psvexQdHY+6vycaGdMPcOHFBKR7SccIN+z+tT6ZYTGM="
+              "CodeSha256": "Q7A5rCo8PxD9FRCwoomRu0UMrwC/LQRSBNRD9NtzA94="
             }
           },
           "ApiGatewayRestApi": {
@@ -545,6 +592,52 @@
               "EmployeeDetailsLambdaPermissionApiGateway"
             ]
           },
+          "ApiGatewayMethodEmployeesIdVarPut": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "PUT",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceEmployeesIdVar"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "UpdateEmployeeLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            },
+            "DependsOn": [
+              "UpdateEmployeeLambdaPermissionApiGateway"
+            ]
+          },
           "ApiGatewayMethodEmployeesIdVarDelete": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
@@ -591,7 +684,7 @@
               "DeleteEmployeeLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1632922834529": {
+          "ApiGatewayDeployment1633112830990": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -603,6 +696,7 @@
               "ApiGatewayMethodEmployeesPost",
               "ApiGatewayMethodEmployeesGet",
               "ApiGatewayMethodEmployeesIdVarGet",
+              "ApiGatewayMethodEmployeesIdVarPut",
               "ApiGatewayMethodEmployeesIdVarDelete"
             ]
           },
@@ -717,6 +811,43 @@
               }
             }
           },
+          "UpdateEmployeeLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "UpdateEmployeeLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
           "DeleteEmployeeLambdaPermissionApiGateway": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
@@ -793,7 +924,7 @@
           "EmployeeSubmissionLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "EmployeeSubmissionLambdaVersionqP8tw14bZV09wRK2txAMJ0aULYr98Gl1jrBZtpf0s"
+              "Ref": "EmployeeSubmissionLambdaVersion3w7POX1Vu81eVQHyNcX8d14iRSNQztGBRfvBjHceEs"
             },
             "Export": {
               "Name": "sls-employee-dev-EmployeeSubmissionLambdaFunctionQualifiedArn"
@@ -802,7 +933,7 @@
           "ListEmployeesLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ListEmployeesLambdaVersiongdjTT61vohxTMH83G2ugnJCoyjUuuloLf2aolJnFZkA"
+              "Ref": "ListEmployeesLambdaVersionL1YiNpFNFD69cm7mTV2J7QVv5lQDPeMUsB7uhiKKI"
             },
             "Export": {
               "Name": "sls-employee-dev-ListEmployeesLambdaFunctionQualifiedArn"
@@ -811,16 +942,25 @@
           "EmployeeDetailsLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "EmployeeDetailsLambdaVersionG1Dhe5c4oVBZJjPmShcnly4rkVWWk8wVp8uJkyVUnU"
+              "Ref": "EmployeeDetailsLambdaVersion6InJiBM82gNUDNGo1HDE6UreOwPEbYEJIB2IQAI"
             },
             "Export": {
               "Name": "sls-employee-dev-EmployeeDetailsLambdaFunctionQualifiedArn"
             }
           },
+          "UpdateEmployeeLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "UpdateEmployeeLambdaVersionCKWmKFIr1PAHCjPBkkCCCLmMW1JnBuMTesJoEYKbs"
+            },
+            "Export": {
+              "Name": "sls-employee-dev-UpdateEmployeeLambdaFunctionQualifiedArn"
+            }
+          },
           "DeleteEmployeeLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "DeleteEmployeeLambdaVersionI2rmLjYmXVYWXquhdF0okFQYwtfpI2duvEpvBSw7Xk"
+              "Ref": "DeleteEmployeeLambdaVersion16reC9i2Uu7m8YBbd1YQaJfxohPenspuu3vp3rTPn5E"
             },
             "Export": {
               "Name": "sls-employee-dev-DeleteEmployeeLambdaFunctionQualifiedArn"
@@ -959,7 +1099,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "EmployeeSubmissionLambdaVersionqP8tw14bZV09wRK2txAMJ0aULYr98Gl1jrBZtpf0s"
+        "versionLogicalId": "EmployeeSubmissionLambdaVersion3w7POX1Vu81eVQHyNcX8d14iRSNQztGBRfvBjHceEs"
       },
       "listEmployees": {
         "handler": "api/employee.list",
@@ -980,7 +1120,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "ListEmployeesLambdaVersiongdjTT61vohxTMH83G2ugnJCoyjUuuloLf2aolJnFZkA"
+        "versionLogicalId": "ListEmployeesLambdaVersionL1YiNpFNFD69cm7mTV2J7QVv5lQDPeMUsB7uhiKKI"
       },
       "employeeDetails": {
         "handler": "api/employee.get",
@@ -999,7 +1139,26 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "EmployeeDetailsLambdaVersionG1Dhe5c4oVBZJjPmShcnly4rkVWWk8wVp8uJkyVUnU"
+        "versionLogicalId": "EmployeeDetailsLambdaVersion6InJiBM82gNUDNGo1HDE6UreOwPEbYEJIB2IQAI"
+      },
+      "updateEmployee": {
+        "handler": "api/employee.update",
+        "events": [
+          {
+            "http": {
+              "path": "employees/{id}",
+              "method": "put",
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "employee-dev-updateEmployee",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "UpdateEmployeeLambdaVersionCKWmKFIr1PAHCjPBkkCCCLmMW1JnBuMTesJoEYKbs"
       },
       "deleteEmployee": {
         "handler": "api/employee.delete",
@@ -1018,7 +1177,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "DeleteEmployeeLambdaVersionI2rmLjYmXVYWXquhdF0okFQYwtfpI2duvEpvBSw7Xk"
+        "versionLogicalId": "DeleteEmployeeLambdaVersion16reC9i2Uu7m8YBbd1YQaJfxohPenspuu3vp3rTPn5E"
       }
     },
     "resources": {
@@ -1074,7 +1233,7 @@
     "artifact": "C:\\Users\\msn-j\\AWS\\serverless-challange\\employee-service\\.serverless\\employee.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/employee/dev/1632922835604-2021-09-29T13:40:35.604Z",
+    "artifactDirectoryName": "serverless/employee/dev/1633112833833-2021-10-01T18:27:13.833Z",
     "artifact": "employee.zip"
   }
 }
