@@ -85,7 +85,7 @@ or
 
 via RESTMAN/POSTMAN/INSOMNIA inserting an JSON method POST
 
-{ "fullname": "João Santos", "role": "FullStack Deve", "age": 25 }
+{ "fullname": "João Santos", "role": "FullStack Dev", "age": 25 }
 
 ```
 
