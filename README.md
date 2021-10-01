@@ -179,7 +179,7 @@ curl -X DELETE https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/employees
 
 or
 
-via RESTMAN/POSTMAN/INSOMNIA inserting an JSON method GET
+via RESTMAN/POSTMAN/INSOMNIA inserting an JSON method DELETE
 
 ```
 
