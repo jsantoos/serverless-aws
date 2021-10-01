@@ -188,8 +188,11 @@ No output
 ## Serverless
 
 https://www.serverless.com/
+
 https://serverless-stack.com/chapters/organizing-serverless-projects.html
+
 https://serverless-stack.com/chapters/configure-dynamodb-in-serverless.html
+
 https://serverless-stack.com/chapters/deploy-a-serverless-app-with-dependencies.html
 
 ### AWS Lambda
