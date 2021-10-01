@@ -20,13 +20,14 @@ This service has a directory api and all the employee operations in a single fil
 - API for a Web Application
 - API for a Mobile Application
 
+## Prerequisite
+AWS account
+Node.js
+AWS CLI and configure it
+
 ## Setup
 
 ```bash
-Download NodeJS LTS
-
-Then
-
 In the service path:
 
 npm install -g serverless
