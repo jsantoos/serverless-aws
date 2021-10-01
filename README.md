@@ -137,7 +137,7 @@ Example output:
 
 ```bash
 # Replace the <id> part with a real id from your employee table
-curl https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/employees/<id>
+curl https://ugvpksnz45.execute-api.us-east-1.amazonaws.com/dev/employees/<id>
 
 or
 
@@ -184,7 +184,7 @@ Example Result:
 
 ```bash
 # Replace the <id> part with a real id from your Employee table
-curl -X DELETE https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/employees/<id>
+curl -X DELETE https://ugvpksnz45.execute-api.us-east-1.amazonaws.com/dev/employees/<id>
 
 or
 
