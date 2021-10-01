@@ -13,7 +13,7 @@ This example demonstrates how to setup a [RESTFUL Web Services allowing you to c
 
 ## Structure
 
-This service has a separate directory for all the todo operations. For each operation exactly one file exists e.g. `api/employee.js`. In each of these files there is exactly one function which is directly attached to `module.exports`.
+This service has a separate directory for all the employee operations. For each operation exactly one file exists e.g. `api/employee.js`. In each of these files there is exactly one function which is directly attached to `module.exports`.
 
 ## Use-cases
 
