@@ -104,7 +104,7 @@ curl https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/employees
 
 or
 
-via RESTMAN/POSTMAN/INSOMNIA inserting an JSON method GET
+via RESTMAN/POSTMAN/INSOMNIA inserting a url, method GET
 
 
 ```
@@ -141,7 +141,7 @@ curl https://ugvpksnz45.execute-api.us-east-1.amazonaws.com/dev/employees/<id>
 
 or
 
-via RESTMAN/POSTMAN/INSOMNIA inserting an JSON method GET
+via RESTMAN/POSTMAN/INSOMNIA inserting the url + id,  method GET
 
 ```
 
@@ -188,7 +188,7 @@ curl -X DELETE https://ugvpksnz45.execute-api.us-east-1.amazonaws.com/dev/employ
 
 or
 
-via RESTMAN/POSTMAN/INSOMNIA inserting an JSON method DELETE
+via RESTMAN/POSTMAN/INSOMNIA inserting a url + id, method DELETE
 
 ```
 
