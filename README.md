@@ -22,8 +22,10 @@ This service has a directory api and all the employee operations in a single fil
 
 ## Prerequisite
 AWS account
+
 Node.js
-AWS CLI and configure it
+
+AWS CLI and configure it (creating an IAM user and getting the keys)
 
 ## Setup
 
@@ -32,6 +34,8 @@ In the service path:
 
 npm install -g serverless
 npm install
+serverless config credentials --provider aws --key AKIAIOSFODNN7EXAMPLE --secret wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+
 ```
 
 ## Deploy
