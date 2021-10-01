@@ -23,6 +23,13 @@ This service has a directory api and all the employee operations in a single fil
 ## Setup
 
 ```bash
+Download NodeJS LTS
+
+Then
+
+In the service path:
+
+npm install -g serverless
 npm install
 ```
 
