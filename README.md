@@ -21,11 +21,9 @@ This service has a directory api and all the employee operations in a single fil
 - API for a Mobile Application
 
 ## Prerequisite
-AWS account
-
-Node.js
-
-AWS CLI and configure it (creating an IAM user and getting the keys)
+- AWS account
+- Node.js
+- AWS CLI and configure it (creating an IAM user and getting the keys)
 
 ## Setup
 
