@@ -13,7 +13,7 @@ This example demonstrates how to setup a [RESTFUL] Web Services allowing you to 
 
 ## Structure
 
-This service has a directory api and all the employee operations in a single file. For each operation exactly one file exists e.g. `api/employee.js`. In this file there is exactly one function which is directly attached to `module.exports`.
+This service has a directory api and all the employee operations in a single file. For each operation exactly one file exists e.g. `api/employee.js`. In this file there is exactly four functions (list, get, update and delete) which is directly attached to `module.exports`.
 
 ## Use-cases
 
