@@ -194,4 +194,4 @@ https://www.serverless.com/
 https://aws.amazon.com/pt/lambda/
 
 ### DynamoDB
-https://aws.amazon.com/pt/dynamodb/?trk=ps_a134p000006gXxQAAU&trkCampaign=acq_paid_search_brand&sc_channel=PS&sc_campaign=acquisition_BR&sc_publisher=Google&sc_category=Database&sc_country=BR&sc_geo=LATAM&sc_outcome=acq&sc_detail=%2Bdynamodb&sc_content=DynamoDB_bmm&sc_matchtype=b&sc_segment=536393528866&sc_medium=ACQ-P|PS-GO|Brand|Desktop|SU|Database|DynamoDB|BR|EN|Text&s_kwcid=AL!4422!3!536393528866!b!!g!!%2Bdynamodb&ef_id=CjwKCAjw49qKBhAoEiwAHQVTo46obYzAmKDtZxjj9d2rK80ahbJfsKonXFqFR4aa8_awYxVilwtZXBoCKLwQAvD_BwE:G:s&s_kwcid=AL!4422!3!536393528866!b!!g!!%2Bdynamodb
+https://aws.amazon.com/pt/dynamodb/
