@@ -9,11 +9,11 @@ authorName: 'João Santos'
 -->
 # Serverless HTTP API - (AWS + NodeJS + DynamoDB)
 
-This example demonstrates how to setup a [RESTFUL Web Services allowing you to create, list, get, update and delete Employees. DynamoDB is used to store the data. This is just an example and of an challange you could use any data storage as a backend.
+This example demonstrates how to setup a [RESTFUL] Web Services allowing you to create, list, get, update and delete Employees. DynamoDB is used to store the data. This is just an example and of an challange you could use any data storage as a backend.
 
 ## Structure
 
-This service has a separate directory for all the employee operations. For each operation exactly one file exists e.g. `api/employee.js`. In each of these files there is exactly one function which is directly attached to `module.exports`.
+This service has a directory api and all the employee operations in a single file. For each operation exactly one file exists e.g. `api/employee.js`. In this file there is exactly one function which is directly attached to `module.exports`.
 
 ## Use-cases
 
