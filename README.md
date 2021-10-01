@@ -64,7 +64,7 @@ functions:
 
 ## Usage
 
-You can create, retrieve, update, or delete todos with the following commands:
+You can create, retrieve, update, or delete Employees with the following commands:
 
 ### Insert a Employee
 
@@ -90,7 +90,7 @@ Example Result:
 ### List all Employees
 
 ```bash
-curl https://XXXXXXX.execute-api.us-east-1.amazonaws.com/employees
+curl https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/employees
 
 or
 
@@ -123,11 +123,11 @@ Example output:
  }
  ```
  
-### Get one Todo
+### Get one Employee
 
 ```bash
 # Replace the <id> part with a real id from your employee table
-curl https://XXXXXXX.execute-api.us-east-1.amazonaws.com/employees/<id>
+curl https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/employees/<id>
 
 or
 
@@ -148,11 +148,11 @@ Example Result:
       }
 ```
 
-### Update a Todo
+### Update a Employee
 
 ```bash
-# Replace the <id> part with a real id from your todos table
-curl -X PUT https://XXXXXXX.execute-api.us-east-1.amazonaws.com/todos/<id> --data '{ "fullname": "João Souza", "role": "Machine Learning", "age": 26 }'
+# Replace the <id> part with a real id from your employees table
+curl -X PUT https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/employee/<id> --data '{ "fullname": "João Souza", "role": "Machine Learning", "age": 26 }'
 
 or
 
@@ -174,8 +174,8 @@ Example Result:
 ### Delete a Employee
 
 ```bash
-# Replace the <id> part with a real id from your todos table
-curl -X DELETE https://XXXXXXX.execute-api.us-east-1.amazonaws.com/employees/<id>
+# Replace the <id> part with a real id from your Employee table
+curl -X DELETE https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/employees/<id>
 
 or
 
